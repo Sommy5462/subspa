@@ -229,10 +229,11 @@ namespace subspa {
 			String^ phonenumber = phone_num->Text;
 
 			MySqlCommand^ command = gcnew MySqlCommand("insert into database.clientinfo values ('" + name + "','" + email + "','" + iucnumber + "','" + phonenumber + "')", connect);
-
-			MySqlDataReader^ dr = command->ExecuteReader();
 			connect->Open();
-			MessageBox::Show("User Info Saved!!!\n User ID:");
+			MySqlDataReader^ dr = command->ExecuteReader();
+			
+			MessageBox::Show("User's Info Saved!!!");
+			connect->Close();
 		}
 		catch (Exception^ ex)
 		{
@@ -282,7 +283,7 @@ private: System::Void name_box_TextChanged(System::Object^  sender, System::Even
 	}
 	catch (Exception^ ex)
 	{
-		MessageBox::Show(ex->Message);
+		//MessageBox::Show(ex->Message);
 	}
 }
 };
